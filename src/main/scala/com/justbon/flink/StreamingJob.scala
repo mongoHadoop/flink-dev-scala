@@ -19,7 +19,7 @@
 package com.justbon.flink
 
 import org.apache.flink.streaming.api.scala._
-
+import org.apache.flink.streaming.api.windowing.time.Time
 /**
  * Skeleton for a Flink Streaming Job.
  *
@@ -34,30 +34,16 @@ import org.apache.flink.streaming.api.scala._
  */
 object StreamingJob {
   def main(args: Array[String]) {
-    // set up the streaming execution environment
-    val env = StreamExecutionEnvironment.getExecutionEnvironment
+    val senv = StreamExecutionEnvironment.getExecutionEnvironment
 
-    /*
-     * Here, you can start creating your execution plan for Flink.
-     *
-     * Start with getting some data from the environment, like
-     *  env.readTextFile(textPath);
-     *
-     * then, transform the resulting DataStream[String] using operations
-     * like
-     *   .filter()
-     *   .flatMap()
-     *   .join()
-     *   .group()
-     *
-     * and many more.
-     * Have a look at the programming guide:
-     *
-     * http://flink.apache.org/docs/latest/apis/streaming/index.html
-     *
-     */
-
-    // execute program
-    env.execute("Flink Streaming Scala API Skeleton")
+    val dataStream: DataStream[String] = senv.socketTextStream("10.1.179.88", 9999, '\n')
+    dataStream.flatMap { line => line.toLowerCase.split(",") }
+      .filter(_.nonEmpty)
+      .map { word => (word, 1) }
+      .keyBy(0)
+      .timeWindow(Time.seconds(3))
+      .sum(1)
+      .print()
+    senv.execute("Streaming WordCount")
   }
 }
