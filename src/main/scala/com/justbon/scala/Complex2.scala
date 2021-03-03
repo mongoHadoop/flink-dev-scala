@@ -3,6 +3,9 @@ package com.justbon.scala
 class Complex2(real: Double, imaginary: Double) {
   def re = real
   def im = imaginary
+
+  override def toString() =
+    "" + re + (if (im < 0) "" else "+") + im + "i"
 }
 
 /***
@@ -12,3 +15,12 @@ class Complex2(real: Double, imaginary: Double) {
   * 所以在使用时也不用加（但是无疑的，他们是函数），因此，我们的 Complex类可以重新写成上面的样子
   */
 
+/**
+  *
+  * Scala中的所有类都继承一个父类，当没有显示声明父类时（就像上面定义的Complex一样），
+  * 它们的父类隐形指定为scala.AnyRef。
+  *
+  * 在子类中覆盖父类的成员是可能的。但是你需要通过override修饰符显示指定成员的覆盖。
+  * 这样的规则可以避免意外覆盖的情况发生。作为演示，
+  * 我们在Complex的定义中覆盖了Object的toString方法。
+  * */
