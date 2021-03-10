@@ -37,7 +37,7 @@ object StreamingJob {
     val senv = StreamExecutionEnvironment.getExecutionEnvironment
 
     val dataStream: DataStream[String] = senv.socketTextStream("10.1.179.88", 9999, '\n')
-    dataStream.flatMap { line => line.toLowerCase.split(",") }
+    dataStream.flatMap(line => line.toLowerCase.split(","))
       .filter(_.nonEmpty)
       .map { word => (word, 1) }
       .keyBy(0)

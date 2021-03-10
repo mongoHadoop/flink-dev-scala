@@ -13,12 +13,15 @@ object WordCountJob {
       "The slings and arrows of outrageous fortune",
       "Or to take arms against a sea of troubles,")
 
-    val counts = text.flatMap { _.toLowerCase.split("\\W+") }
+    val counts = text.flatMap{_.toLowerCase.split("\\W+")}
       .map { (_, 1) }
       .groupBy(0)
       .sum(1)
 
     // emit result
     counts.print()
+
+
+
   }
 }
