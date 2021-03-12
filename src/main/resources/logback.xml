@@ -37,7 +37,7 @@
         </triggeringPolicy>
     </appender>
     <appender name="ERROR_FILE" class="ch.qos.logback.core.FileAppender">
-<!--        <file>${log-file:-scala-logging.log}</file>-->
+        <!--        <file>${log-file:-scala-logging.log}</file>-->
         <file>log/error.log</file>
         <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
             <level>error</level>
@@ -53,20 +53,20 @@
         <appender-ref ref="DEBUG_FILE" />
         <appender-ref ref="ERROR_FILE" />
     </root>
-<!--        <logger name="org.apache.http" level="INFO" />-->
-<!--        <logger name="org.springframework.web" level="INFO" />-->
-<!--        <logger name="org.hibernate" level="ERROR" />-->
-<!--        <logger name="org.apache.spark.repl.Main" level="WARN" />-->
-<!--        <logger name="org.apache.spark" level="WARN" />-->
-<!--        <logger name="org.spark_project.jetty" level="WARN" />-->
-<!--        <logger name="org.spark_project.jetty.util.component.AbstractLifeCycle" level="ERROR" />-->
-<!--        <logger name="org.apache.spark.repl.SparkIMain$exprTyper" level="INFO" />-->
-<!--        <logger name="org.apache.spark.repl.SparkILoop$SparkILoopInterpreter" level="INFO" />-->
-<!--        <logger name="org.apache.parquet" level="ERROR" />-->
-<!--        <logger name="parquet" level="ERROR" />-->
-<!--        <logger name="org.apache.hadoop.hive.metastore.RetryingHMSHandler" level="FATAL" />-->
-<!--        <logger name="org.apache.hadoop.hive.ql.exec.FunctionRegistry" level="ERROR" />-->
-<!--        <logger name="cn.com.xxx.yyy" level="DEBUG">-->
-<!--            <appender-ref ref="FILE" />-->
-<!--        </logger>-->
+    <!--        <logger name="org.apache.http" level="INFO" />-->
+    <!--        <logger name="org.springframework.web" level="INFO" />-->
+    <!--        <logger name="org.hibernate" level="ERROR" />-->
+    <!--        <logger name="org.apache.spark.repl.Main" level="WARN" />-->
+    <!--        <logger name="org.apache.spark" level="WARN" />-->
+    <!--        <logger name="org.spark_project.jetty" level="WARN" />-->
+    <!--        <logger name="org.spark_project.jetty.util.component.AbstractLifeCycle" level="ERROR" />-->
+    <!--        <logger name="org.apache.spark.repl.SparkIMain$exprTyper" level="INFO" />-->
+    <!--        <logger name="org.apache.spark.repl.SparkILoop$SparkILoopInterpreter" level="INFO" />-->
+    <!--        <logger name="org.apache.parquet" level="ERROR" />-->
+    <!--        <logger name="parquet" level="ERROR" />-->
+    <!--        <logger name="org.apache.hadoop.hive.metastore.RetryingHMSHandler" level="FATAL" />-->
+    <!--        <logger name="org.apache.hadoop.hive.ql.exec.FunctionRegistry" level="ERROR" />-->
+    <!--        <logger name="cn.com.xxx.yyy" level="DEBUG">-->
+    <!--            <appender-ref ref="FILE" />-->
+    <!--        </logger>-->
 </configuration>

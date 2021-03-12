@@ -200,6 +200,26 @@ under the License.
 				</exclusion>
 			</exclusions>
 		</dependency>
+			<!---
+			Flink 除了内置的连接器外，还有一些额外的连接器通过 Apache Bahir 发布，包括：
+
+			Apache ActiveMQ (source/sink)
+			Apache Flume (sink)
+			Redis (sink)
+			Akka (sink)
+			Netty (source)
+			这里我用 Redis 来举例，首先需要配置 Redis 连接器的依赖：
+			-->
+		<dependency>
+			<groupId>org.apache.bahir</groupId>
+			<artifactId>flink-connector-redis_2.11</artifactId>
+			<version>1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.49</version>
+		</dependency>
 	</dependencies>
 
 	<build>
