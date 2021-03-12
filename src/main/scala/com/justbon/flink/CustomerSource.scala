@@ -1,4 +1,5 @@
 package com.justbon.flink
+import com.typesafe.scalalogging.Logger
 import org.apache.flink.streaming.api.functions.source.SourceFunction
 import org.apache.flink.streaming.api.scala.StreamExecutionEnvironment
 
@@ -9,10 +10,11 @@ import scala.util.Random
   *
   * 通过实现 SourceFunction 接口来自定义无并行度（也就是并行度只能为 1）的 Source。
   * 通过实现 ParallelSourceFunction 接口或者继承 RichParallelSourceFunction 来自定义有并行度的数据源。
-  * 拿SourceFunction举例：
+  * 拿SourceFunction举例： 成功的运行
   */
 object CustomerSource {
 
+  private[this]val logger =Logger(this.getClass)
   def main(args: Array[String]): Unit = {
     val env: StreamExecutionEnvironment =
       StreamExecutionEnvironment.getExecutionEnvironment
@@ -20,7 +22,7 @@ object CustomerSource {
     import org.apache.flink.streaming.api.scala._
     var sourceFunction=new MyCustomerSource
     val stream = env.addSource(sourceFunction)
-    stream.print()
+    stream.map(O=>logger.info("bean:{}",O))
     //sourceFunction.cancel()
     env.execute()
   }
