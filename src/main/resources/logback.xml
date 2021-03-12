@@ -1,0 +1,72 @@
+<configuration>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <!-- encoders are assigned the type
+     ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} %line --- %msg%n</pattern>
+        </encoder>
+    </appender>
+    <appender name="INFO_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+            <charset>utf-8</charset>
+        </encoder>
+        <file>log/info.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+            <fileNamePattern>log/output.log.%i</fileNamePattern>
+        </rollingPolicy>
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <MaxFileSize>1MB</MaxFileSize>
+        </triggeringPolicy>
+    </appender>
+    <appender name="DEBUG_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+            <charset>utf-8</charset>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>DEBUG</level>
+        </filter>
+        <file>log/debug.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+            <fileNamePattern>log/output.log.%i</fileNamePattern>
+        </rollingPolicy>
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <MaxFileSize>1MB</MaxFileSize>
+        </triggeringPolicy>
+    </appender>
+    <appender name="ERROR_FILE" class="ch.qos.logback.core.FileAppender">
+<!--        <file>${log-file:-scala-logging.log}</file>-->
+        <file>log/error.log</file>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>error</level>
+        </filter>
+        <encoder>
+            <pattern>%date{HH:mm:ss} %-5level %logger{0} {%class %method} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <root level="info">
+        <appender-ref ref="STDOUT" />
+        <appender-ref ref="INFO_FILE" />
+        <appender-ref ref="DEBUG_FILE" />
+        <appender-ref ref="ERROR_FILE" />
+    </root>
+<!--        <logger name="org.apache.http" level="INFO" />-->
+<!--        <logger name="org.springframework.web" level="INFO" />-->
+<!--        <logger name="org.hibernate" level="ERROR" />-->
+<!--        <logger name="org.apache.spark.repl.Main" level="WARN" />-->
+<!--        <logger name="org.apache.spark" level="WARN" />-->
+<!--        <logger name="org.spark_project.jetty" level="WARN" />-->
+<!--        <logger name="org.spark_project.jetty.util.component.AbstractLifeCycle" level="ERROR" />-->
+<!--        <logger name="org.apache.spark.repl.SparkIMain$exprTyper" level="INFO" />-->
+<!--        <logger name="org.apache.spark.repl.SparkILoop$SparkILoopInterpreter" level="INFO" />-->
+<!--        <logger name="org.apache.parquet" level="ERROR" />-->
+<!--        <logger name="parquet" level="ERROR" />-->
+<!--        <logger name="org.apache.hadoop.hive.metastore.RetryingHMSHandler" level="FATAL" />-->
+<!--        <logger name="org.apache.hadoop.hive.ql.exec.FunctionRegistry" level="ERROR" />-->
+<!--        <logger name="cn.com.xxx.yyy" level="DEBUG">-->
+<!--            <appender-ref ref="FILE" />-->
+<!--        </logger>-->
+</configuration>
